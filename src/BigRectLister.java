@@ -1,45 +1,32 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 public class BigRectLister {
+    static ArrayList<Rectangle> rect = new ArrayList<>();
+    static BigRectangleFilter lister = new BigRectangleFilter();
 
-    public static void main(String[] args)
-    {
-        ArrayList<Object> parallelogram = new ArrayList<>();
-        Scanner in = new Scanner(System.in);
-        BigRectangleFilter bigPara = new BigRectangleFilter();
+    public static void main(String[] args) {
+        rect.add(new Rectangle(4, 4));
+        rect.add(new Rectangle(4, 5));
+        rect.add(new Rectangle(2, 4));
+        rect.add(new Rectangle(3, 4));
+        rect.add(new Rectangle(5, 2));
+        rect.add(new Rectangle(1, 4));
+        rect.add(new Rectangle(6, 2));
+        rect.add(new Rectangle(5, 1));
+        rect.add(new Rectangle(7, 1));
+        rect.add(new Rectangle(1, 8));
 
-        Object paraInput;
-
-        System.out.println("Enter the perimeter of 10 specific rectangles");
-
-        for(int i = 0; i < 10; i++) {
-            System.out.println("Numerical order of rectange " + (i + 1));
-            paraInput = SafeInput.getInt(in, "Enter the perimeter of the rectangle");
-            parallelogram.add(paraInput);
-        }
-        ArrayList<Object> passedPara;
-        passedPara = collectAll(parallelogram, bigPara);
-
-        System.out.println("\nPassed perimeters: ");
-        for(Object passedParas : passedPara)
+        for(Rectangle r: rect)
         {
-            System.out.println(passedParas);
-        }
-
-    }
-
-    private static ArrayList<Object> collectAll(ArrayList<Object> objects, Filter filter)
-    {
-        ArrayList<Object> passed = new ArrayList<>();
-        for (Object object : objects)
-        {
-            if(filter.accept(object))
+            if(lister.accept(r))
             {
-                passed.add(object);
+                System.out.println(r);
             }
-
         }
-        return passed;
     }
+
+
 }
+
 
